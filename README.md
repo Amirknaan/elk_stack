@@ -135,7 +135,7 @@ than at the browser go to managment -> index life cycle policies and choose the 
 14. explain the differences and the decision making in putting an Index at cold/Frozen/Closed.<br>
 קודם אפרט מה כל מצב עושה.<br>
 closed:<br>
-אינו נגיש לפעולות של קריאה וכתיבה. במצב זה הוא לא נטען לזכרון ולא צורך משאבי cpu או ram.
+אינו נגיש לפעולות של קריאה וכתיבה. במצב זה הוא לא נטען לזכרון ולא צורך משאבי זכרון ועיבוד.
 מדובר במצב שכדאי להשתמש בו כאשר אין גישה תדירה לאינדקס, כמו לדוגמה נתוני ארכיון.<br>
 frozen:<br>
 אינדקס במצב קפוא נשמר במערכת אך נטען לזכרון רק כשיש שאילתא אליו.
