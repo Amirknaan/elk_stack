@@ -1,14 +1,14 @@
 # Elastic Stack Project
 
-##Objective
+## Objective
 setting up and configuring Elasticsearch, Kibana, Logstash, and Filebeat to ingest data from various sources, create dashboards, and configure index lifecycle management (ILM) and alerts.
 
-##Prerequisites
+## Prerequisites
 Linux-based CentOS VM
 Tools:
 I worked with an AWS EC2 instance
 
-##Instructions
+## Instructions
 1. Setting Up a Linux-based centOS VM
 I used this AMI ami-00543d76373f96fe7 to run on the EC2 instance.
 I Allocated appropriate resources (CPU, RAM, Disk space) and configured the needed Network settings and security groups by allowing inbound rules to the relevant ports: 
@@ -19,10 +19,10 @@ I Allocated appropriate resources (CPU, RAM, Disk space) and configured the need
 5044 for logstash.
 
 2. install elasticsearch
-#import the GPG key
+## import the GPG key
 sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 
-##add the elastic repository
+## add the elastic repository
 If you dont have vim, install it: sudo yum install vim
 sudo vim /etc/yum.repos.d/elasticsearch.repo
 and paste this:
@@ -35,14 +35,14 @@ enabled=1
 autorefresh=1
 type=rpm-md 
 
-##install elasticsearch
+## install elasticsearch
 sudo yum install elasticsearch-8.1.3
 dont forget to save the password that is printed on the screen
-#start and enable Elasticsearch
+## start and enable Elasticsearch
 sudo systemctl start elasticsearch
 sudo systemctl enable elasticsearch
 
-##testing
+## testing
 sudo systemctl status elasticsearch
 send a request:
 curl -kuelastic:password https://3.226.195.229:9200
@@ -61,11 +61,11 @@ type=rpm-md
 
 sudo yum install kibana
 enter the file at /etc/kibana/kibana.yml and change the server.host value to "0.0.0.0" 
-#testing
+# testing
 sudo systemctl start kibana
 sudo systemctl enable kibana
 
-##configure kibana
+## configure kibana
 enter on the browser to the public ip, in my case it's http://3.226.195.229:5601
 you will be asked to provide an enrollment token.
 sudo /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token
