@@ -9,15 +9,14 @@ Tools:
 I worked with an AWS EC2 instance
 
 ## Instructions
-1. Setting Up a Linux-based centOS VM
-I used this AMI ami-00543d76373f96fe7 to run on the EC2 instance.
-I Allocated appropriate resources (CPU, RAM, Disk space) and configured the needed Network settings and security groups by allowing inbound rules to the relevant ports: 
-80 and 443 for http and https
-22 for ssh into the machine
-9200 for elasticsearch
-5061 for kibana
+1. Setting Up a Linux-based centOS VM<br>
+I used this AMI ami-00543d76373f96fe7 to run on the EC2 instance.<br>
+I Allocated appropriate resources (CPU, RAM, Disk space) and configured the needed Network settings and security groups by allowing inbound rules to the relevant ports:<br> 
+80 and 443 for http and https<br>
+22 for ssh into the machine<br>
+9200 for elasticsearch<br>
+5061 for kibana<br>
 5044 for logstash.
-
 2. install elasticsearch
 import the GPG key
 sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
