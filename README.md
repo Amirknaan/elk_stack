@@ -117,7 +117,7 @@ go to kibana -> Data views -> add field and choose the filter you wish, and clic
 
 12. Create Dashboard<br>
 Dashboards -> create Dashboard -> create virtualization -> choose the data view and available fields + the virtualization ( for example Bar vertical stacked ) and save.<br>
-![logo](/home/amir/Pictures/Screenshots/dashboard.png)
+![logo](images/dashboard.png)
 
 13. Define an ILM<br>
 Before defining an ILM we need to define an alias, which is required for rollover.<br>
