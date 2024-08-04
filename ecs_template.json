@@ -1,0 +1,40 @@
+{
+  "index_patterns": ["cef-data-*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 1
+    },
+    "mappings": {
+      "properties": {
+        "ecs": {
+          "properties": {
+            "device": {
+              "properties": {
+                "vendor": { "type": "keyword" },
+                "product": { "type": "keyword" },
+                "version": { "type": "keyword" }
+              }
+            },
+            "event": {
+              "properties": {
+                "id": { "type": "keyword" },
+                "category": { "type": "keyword" },
+                "severity": { "type": "integer" }
+              }
+            },
+            "extension": {
+              "properties": {
+                "field1": { "type": "keyword" },
+                "field2": { "type": "keyword" }
+              }
+            }
+          }
+        },
+        "@timestamp": { "type": "date" },
+        "message": { "type": "text" }
+      }
+    }
+  }
+}
+

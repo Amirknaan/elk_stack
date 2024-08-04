@@ -1,0 +1,61 @@
+{
+  "index_patterns": ["json-expm-*"],
+  "template": {
+    "settings": {
+      "index": {
+        "number_of_shards": "1",
+        "number_of_replicas": "1"
+      }
+    },
+    "mappings": {
+      "properties": {
+        "meta-data": {
+          "properties": {
+            "Global messageID": { "type": "keyword" },
+            "Message ID": { "type": "keyword" },
+            "Log timestamp": {
+              "type": "date",
+              "format": "yyyy/M/d-HH:mm:ss"
+            },
+            "Organization": { "type": "keyword" },
+            "Environment": { "type": "keyword" },
+            "Region": { "type": "keyword" },
+            "MP_UUID": { "type": "keyword" },
+            "Proxy Name": { "type": "keyword" },
+            "Request Verb": { "type": "keyword" },
+            "Request URL": { "type": "keyword" },
+            "Client IP": { "type": "ip" },
+            "Client CN": { "type": "keyword" },
+            "Backend URL": { "type": "keyword" },
+            "Response status code": { "type": "keyword" },
+            "Received from client time": { "type": "date", "format": "EEE, dd MMM yyyy HH:mm:ss Z" },
+            "Received from client timestamp": { "type": "long" },
+            "Sent to backend time": { "type": "date", "format": "EEE, dd MMM yyyy HH:mm:ss Z" },
+            "Sent to backend timestamp": { "type": "long" },
+            "Received reply from backend time": { "type": "date", "format": "EEE, dd MMM yyyy HH:mm:ss Z" },
+            "Received reply from backend timestamp": { "type": "long" },
+            "Replied to client time": { "type": "date", "format": "EEE, dd MMM yyyy HH:mm:ss Z" },
+            "Is Error": { "type": "keyword" }
+          }
+        },
+        "Data": {
+          "properties": {
+            "Client Request": { "type": "integer" },
+            "Backend Request": { "type": "integer" },
+            "Backend Response": { "type": "integer" },
+            "Client Response": { "type": "object" }
+          }
+        },
+        "Fault": {
+          "properties": {
+            "Is Error": { "type": "keyword" },
+            "Error content": { "type": "keyword" },
+            "Error message": { "type": "keyword" },
+            "Error status code": { "type": "keyword" }
+          }
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,42 @@
+###################### Filebeat Configuration Example #########################
+
+# ============================== Filebeat inputs ===============================
+
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /home/ec2-user/json-expm.json
+  json.keys_under_root: true
+  json.add_error_key: true
+# ============================== Filebeat modules ==============================
+
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+
+# ======================= Elasticsearch template setting =======================
+
+setup.template.settings:
+  index.number_of_shards: 1
+
+# =================================== Kibana ===================================
+
+setup.kibana:
+  host: "http://3.226.195.229:5601"
+
+# ================================== Outputs ===================================
+
+# Logstash output
+output.logstash:
+  hosts: ["3.226.195.229:5044"]
+
+
+# ================================== Logging ===================================
+
+logging.level: info
+
+# ============================= X-Pack Monitoring ==============================
+
+monitoring.enabled: false
+
