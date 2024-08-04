@@ -26,14 +26,14 @@ If you dont have vim, install it:<br>
 sudo yum install vim<br>
 sudo vim /etc/yum.repos.d/elasticsearch.repo<br>
 and paste this:<br>
-[elasticsearch-8.x]<br>
-name=Elasticsearch repository for 8.x packages<br>
-baseurl=https://artifacts.elastic.co/packages/8.x/yum<br>
-gpgcheck=1<br>
-gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch<br>
-enabled=1<br>
-autorefresh=1<br>
-type=rpm-md
+*[elasticsearch-8.x]*<br>
+*name=Elasticsearch repository for 8.x packages*<br>
+*baseurl=https://artifacts.elastic.co/packages/8.x/yum*<br>
+*gpgcheck=1*<br>
+*gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch*<br>
+*enabled=1*<br>
+*autorefresh=1*<br>
+*type=rpm-md*
 
 4. install elasticsearch
 sudo yum install elasticsearch-8.1.3<br>
@@ -50,14 +50,14 @@ curl -kuelastic:password https://3.226.195.229:9200
 6. install kibana<br>
 sudo vim /etc/yum.repos.d/kibana.repo<br>
 paste this:<br>
-[kibana-8.x]<br>
-name=Kibana repository for 8.x packages<br>
-baseurl=https://artifacts.elastic.co/packages/8.x/yum<br>
-gpgcheck=1<br>
-gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch<br>
-enabled=1<br>
-autorefresh=1<br>
-type=rpm-md
+*[kibana-8.x]*<br>
+*name=Kibana repository for 8.x packages*<br>
+*baseurl=https://artifacts.elastic.co/packages/8.x/yum*<br>
+*gpgcheck=1*<br>
+*gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch*<br>
+*enabled=1*<br>
+*autorefresh=1*<br>
+*type=rpm-md*
 
 sudo yum install kibana<br>
 enter the file at /etc/kibana/kibana.yml and change the server.host value to "0.0.0.0"<br>
@@ -75,14 +75,14 @@ to authenticate insert the default username "elastic" and the password you kept 
 8. Install logstash<br>
 sudo vim /etc/yum.repos.d/logstash.repo<br>
 paste:<br>
-[logstash-8.x]<br>
-name=Logstash repository for 8.x packages<br>
-baseurl=https://artifacts.elastic.co/packages/8.x/yum<br>
-gpgcheck=1<br>
-gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch<br>
-enabled=1<br>
-autorefresh=1<br>
-type=rpm-md
+*[logstash-8.x]*<br>
+*name=Logstash repository for 8.x packages*<br>
+*baseurl=https://artifacts.elastic.co/packages/8.x/yum*<br>
+*gpgcheck=1*<br>
+*gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch*<br>
+*enabled=1*<br>
+*autorefresh=1*<br>
+*type=rpm-md*
 
 sudo yum install logstash-8.1.3<br>
 sudo systemctl start logstash<br>
@@ -92,14 +92,14 @@ sudo systemctl status logstash<br>
 9. Install filebeat<br>
 sudo vim /etc/yum.repos.d/filebeat.repo<br>
 paste:<br>
-[filebeat-8.x]<br>
-name=Filebeat repository for 8.x packages<br>
-baseurl=https://artifacts.elastic.co/packages/8.x/yum<br>
-gpgcheck=1<br>
-gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch<br>
-enabled=1<br>
-autorefresh=1<br>
-type=rpm-md
+*[filebeat-8.x]*<br>
+*name=Filebeat repository for 8.x packages*<br>
+*baseurl=https://artifacts.elastic.co/packages/8.x/yum*<br>
+*gpgcheck=1*<br>
+*gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch*<br>
+*enabled=1*<br>
+*autorefresh=1*<br>
+*type=rpm-md*
 
 sudo yum install filebeat-8.1.3<br>
 sudo systemctl start filebeat<br>
