@@ -25,7 +25,7 @@ sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 3. add the elastic repository
 If you dont have vim, install it: sudo yum install vim
 sudo vim /etc/yum.repos.d/elasticsearch.repo
-and paste this:
+and paste this:<br>
 [elasticsearch-8.x]<br>
 name=Elasticsearch repository for 8.x packages<br>
 baseurl=https://artifacts.elastic.co/packages/8.x/yum<br>
@@ -35,94 +35,89 @@ enabled=1<br>
 autorefresh=1<br>
 type=rpm-md
 
-## install elasticsearch
-sudo yum install elasticsearch-8.1.3
-dont forget to save the password that is printed on the screen
-## start and enable Elasticsearch
-sudo systemctl start elasticsearch
-sudo systemctl enable elasticsearch
+4. install elasticsearch
+sudo yum install elasticsearch-8.1.3<br>
+dont forget to save the password that is printed on the screen<br>
+start and enable Elasticsearch<br>
+sudo systemctl start elasticsearch<br>
+sudo systemctl enable elasticsearch<br>
 
-## testing
-sudo systemctl status elasticsearch
-send a request:
+5. testing<br>
+sudo systemctl status elasticsearch<br>
+send a request:<br>
 curl -kuelastic:password https://3.226.195.229:9200
 
-3. install kibana
-sudo vim /etc/yum.repos.d/kibana.repo
-paste this:
-[kibana-8.x]
-name=Kibana repository for 8.x packages
-baseurl=https://artifacts.elastic.co/packages/8.x/yum
-gpgcheck=1
-gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
-enabled=1
-autorefresh=1
-type=rpm-md
+6. install kibana<br>
+sudo vim /etc/yum.repos.d/kibana.repo<br>
+paste this:<br>
+[kibana-8.x]<br>
+name=Kibana repository for 8.x packages<br>
+baseurl=https://artifacts.elastic.co/packages/8.x/yum<br>
+gpgcheck=1<br>
+gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch<br>
+enabled=1<br>
+autorefresh=1<br>
+type=rpm-md<br>
+sudo yum install kibana<br>
+enter the file at /etc/kibana/kibana.yml and change the server.host value to "0.0.0.0"<br>
+sudo systemctl start kibana<br>
+sudo systemctl enable kibana<br>
 
-sudo yum install kibana
-enter the file at /etc/kibana/kibana.yml and change the server.host value to "0.0.0.0" 
-# testing
-sudo systemctl start kibana
-sudo systemctl enable kibana
-
-## configure kibana
-enter on the browser to the public ip, in my case it's http://3.226.195.229:5601
-you will be asked to provide an enrollment token.
-sudo /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token
-paste the token in the browser, and than generate the verification code like this:
-sudo /usr/share/kibana/bin/kibana-verification-code.
+7. configure kibana<br>
+enter on the browser to the public ip, in my case it's http://3.226.195.229:5601<br>
+you will be asked to provide an enrollment token.<br>
+sudo /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token<br>
+paste the token in the browser, and than generate the verification code like this:<br>
+sudo /usr/share/kibana/bin/kibana-verification-code.<br>
 to authenticate insert the default username "elastic" and the password you kept from the elastic search installation.
 
-4. Install logstash
-sudo vim /etc/yum.repos.d/logstash.repo
-paste:
-[logstash-8.x]
-name=Logstash repository for 8.x packages
-baseurl=https://artifacts.elastic.co/packages/8.x/yum
-gpgcheck=1
-gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
-enabled=1
-autorefresh=1
-type=rpm-md
+8. Install logstash<br>
+sudo vim /etc/yum.repos.d/logstash.repo<br>
+paste:<br>
+[logstash-8.x]<br>
+name=Logstash repository for 8.x packages<br>
+baseurl=https://artifacts.elastic.co/packages/8.x/yum<br>
+gpgcheck=1<br>
+gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch<br>
+enabled=1<br>
+autorefresh=1<br>
+type=rpm-md<br>
+sudo yum install logstash-8.1.3<br>
+sudo systemctl start logstash<br>
+sudo systemctl enable logstash<br>
+sudo systemctl status logstash<br>
 
-sudo yum install logstash-8.1.3
-sudo systemctl start logstash
-sudo systemctl enable logstash
-sudo systemctl status logstash
+9. Install filebeat<br>
+sudo vim /etc/yum.repos.d/filebeat.repo<br>
+paste:<br>
+[filebeat-8.x]<br>
+name=Filebeat repository for 8.x packages<br>
+baseurl=https://artifacts.elastic.co/packages/8.x/yum<br>
+gpgcheck=1<br>
+gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch<br>
+enabled=1<br>
+autorefresh=1<br>
+type=rpm-md<br>
+sudo yum install filebeat-8.1.3<br>
+sudo systemctl start filebeat<br>
+sudo systemctl enable filebeat<br>
+sudo systemctl status filebeat<br>
 
-5. Install filebeat
-sudo vim /etc/yum.repos.d/filebeat.repo
-paste:
-[filebeat-8.x]
-name=Filebeat repository for 8.x packages
-baseurl=https://artifacts.elastic.co/packages/8.x/yum
-gpgcheck=1
-gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
-enabled=1
-autorefresh=1
-type=rpm-md
+10. Ingest CEF data with Logstash<br>
+logstash.conf file attached in the github repo<br>
+sudo systemctl restart logstash<br>
+create an Index template for CEF data - the template file name is ecs_template.json and it's available in the github repo<br>
+apply it with a put request curl -kuelastic:password PUT "http://public-ip:9200_index_template/json_expm_template" -H 'Content-Type: application/json' -d @json_expm_template.json
 
-sudo yum install filebeat-8.1.3
-sudo systemctl start filebeat
-sudo systemctl enable filebeat
-sudo systemctl status filebeat
-
-6. Ingest CEF data with Logstash
-logstash.conf file attached in the github repo
-
-sudo systemctl restart logstash
-
-create an Index template for CEF data - the template file is in the github repo
-
-7. create index pattern
+11. create index pattern<br>
 go to kibana -> Data views -> add field and choose the filter you wish, and click save.
 
-8. Create Dashboard
+12. Create Dashboard<br>
 Dashboards -> create Dashboard -> create virtualization -> choose the data view and available fields + the virtualization ( for example Bar vertical stacked ) and save.
 
-9. Define an ILM
-Before defining an ILM we need to define an alias, which is required for rollover.
-curl -kuelastic:password PUT "http://publicip:9200/my-index" -H 'Content-Type: application/json' -d'
+13. Define an ILM<br>
+Before defining an ILM we need to define an alias, which is required for rollover.<br>
+curl -kuelastic:password PUT "http://publicip:9200/my-index" -H 'Content-Type: application/json' -d'<br>
 {
   "aliases": {
     "my-index-alias": {
@@ -131,18 +126,19 @@ curl -kuelastic:password PUT "http://publicip:9200/my-index" -H 'Content-Type: a
   }
 }'
 
+
 than at the browser go to managment -> index life cycle policies and choose the policy you wish, in our case keeping the data 30 days or rollup at 50g. attach the alias you created.
 
-10. explain the differences and the decision making in putting an Index at cold/Frozen/Closed.
+14. explain the differences and the decision making in putting an Index at cold/Frozen/Closed.<br>
 קודם אפרט מה כל מצב עושה.
-closed:
+closed:<br>
 אינו נגיש לפעולות של קריאה וכתיבה. במצב זה הוא לא נטען לזכרון ולא צורך משאבי cpu או ram.
 מדובר במצב שכדאי להשתמש בו כאשר אין גישה תדירה לאינדקס, כמו לדוגמה נתוני ארכיון.
-frozen:
+frozen:<br>
 אינדקס במצב קפוא נשמר במערכת אך נטען לזכרון רק כשיש שאילתא אליו.
 הוא נשמר באחסון ונטען לזכרון רק בעת בקשה.
 שימושי במקרה שהתדירות לגישה לנתונים אינה גבוהה וכשיש מחסור במשאבים.
-cold:
+cold:<br>
 אינדקס במצב "קר" נגיש לפעולות קריאה בלבד, ונשמר על חומרה איטית יותר ( אך זולה יותר ).
 טוב במקרה שהביצועים לא קריטיים ( הבקשות קריאה איטיות יחסית ) ויעיל בעלויות כי שמור באחסון זול.
 
