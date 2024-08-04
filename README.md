@@ -133,19 +133,22 @@ curl -kuelastic:password PUT "http://publicip:9200/my-index" -H 'Content-Type: a
 than at the browser go to managment -> index life cycle policies and choose the policy you wish, in our case keeping the data 30 days or rollup at 50g. attach the alias you created.
 
 14. explain the differences and the decision making in putting an Index at cold/Frozen/Closed.<br>
-קודם אפרט מה כל מצב עושה.<br>
+let's explain what every state does.<br>
 closed:<br>
-אינו נגיש לפעולות של קריאה וכתיבה. במצב זה הוא לא נטען לזכרון ולא צורך משאבי זכרון ועיבוד.
-מדובר במצב שכדאי להשתמש בו כאשר אין גישה תדירה לאינדקס, כמו לדוגמה נתוני ארכיון.<br>
+Not available for either read or write requests. The Index isnt loaded to the memory and doesnt consume RAM or CPU.
+It can be used when there is no frequent need for data, like archiving.<br>
 frozen:<br>
-אינדקס במצב קפוא נשמר במערכת אך נטען לזכרון רק כשיש שאילתא אליו.
-הוא נשמר באחסון ונטען לזכרון רק בעת בקשה.
-שימושי במקרה שהתדירות לגישה לנתונים אינה גבוהה וכשיש מחסור במשאבים.<br>
+Index that defined as frozen is kept in the system but loads to memory only when a query is made.<br>
+Can be useful if the data doesn't require high performance or infrequently needed, and also in order to save resources.<br>
 cold:<br>
-אינדקס במצב "קר" נגיש לפעולות קריאה בלבד, ונשמר על חומרה איטית יותר ( אך זולה יותר ).
-טוב במקרה שהביצועים לא קריטיים ( הבקשות קריאה איטיות יחסית ) ויעיל בעלויות כי שמור באחסון זול.
+Index defined as "cold" will be accessible for read-only, and kept on a slower perforamance hardware.<br>
+Useful if the performance isn't critical and there is no need to update the data-just store it. cheaper hardware is an advantage here.
 
-שלושת הפרמטרים העיקריים להחליט באיזה מצב להגדיר את האינדקס זה תדירות הגישה למידע, צריכת המשאבים של המערכת והדרישות לביצועים - בדרישה לביצועים גבוהים לדוגמה נרצה שהאינדקס יהיה במצב hot.
+the main three parameters to decide in which state we should define an index will be:<br>
+1. how frequent the data is accessed
+2. how important the performance of retrieving data
+3. how the index impacts the resource consumption<br>
+for best performance we will define the index as "hot"
 
 ## Filebeat & Logstash
 1. Define in /etc/filebeat/filebeat.yml the host of kibana, logstash and a path to the file
