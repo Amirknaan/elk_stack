@@ -26,7 +26,6 @@ sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 If you dont have vim, install it: sudo yum install vim
 sudo vim /etc/yum.repos.d/elasticsearch.repo
 and paste this:
-
 [elasticsearch-8.x]<br>
 name=Elasticsearch repository for 8.x packages<br>
 baseurl=https://artifacts.elastic.co/packages/8.x/yum<br>
