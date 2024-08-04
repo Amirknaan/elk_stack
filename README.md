@@ -19,10 +19,10 @@ I Allocated appropriate resources (CPU, RAM, Disk space) and configured the need
 5044 for logstash.
 
 2. install elasticsearch
-## import the GPG key
+import the GPG key
 sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 
-## add the elastic repository
+3. add the elastic repository
 If you dont have vim, install it: sudo yum install vim
 sudo vim /etc/yum.repos.d/elasticsearch.repo
 and paste this:
