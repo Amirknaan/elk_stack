@@ -22,8 +22,9 @@ import the GPG key
 sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 
 3. add the elastic repository
-If you dont have vim, install it: sudo yum install vim
-sudo vim /etc/yum.repos.d/elasticsearch.repo
+If you dont have vim, install it:<br>
+sudo yum install vim<br>
+sudo vim /etc/yum.repos.d/elasticsearch.repo<br>
 and paste this:<br>
 [elasticsearch-8.x]<br>
 name=Elasticsearch repository for 8.x packages<br>
@@ -56,7 +57,8 @@ gpgcheck=1<br>
 gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch<br>
 enabled=1<br>
 autorefresh=1<br>
-type=rpm-md<br>
+type=rpm-md
+
 sudo yum install kibana<br>
 enter the file at /etc/kibana/kibana.yml and change the server.host value to "0.0.0.0"<br>
 sudo systemctl start kibana<br>
@@ -80,7 +82,8 @@ gpgcheck=1<br>
 gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch<br>
 enabled=1<br>
 autorefresh=1<br>
-type=rpm-md<br>
+type=rpm-md
+
 sudo yum install logstash-8.1.3<br>
 sudo systemctl start logstash<br>
 sudo systemctl enable logstash<br>
@@ -96,7 +99,8 @@ gpgcheck=1<br>
 gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch<br>
 enabled=1<br>
 autorefresh=1<br>
-type=rpm-md<br>
+type=rpm-md
+
 sudo yum install filebeat-8.1.3<br>
 sudo systemctl start filebeat<br>
 sudo systemctl enable filebeat<br>
@@ -129,15 +133,18 @@ curl -kuelastic:password PUT "http://publicip:9200/my-index" -H 'Content-Type: a
 than at the browser go to managment -> index life cycle policies and choose the policy you wish, in our case keeping the data 30 days or rollup at 50g. attach the alias you created.
 
 14. explain the differences and the decision making in putting an Index at cold/Frozen/Closed.<br>
-קודם אפרט מה כל מצב עושה.
+קודם אפרט מה כל מצב עושה.<br>
 closed:<br>
+
 אינו נגיש לפעולות של קריאה וכתיבה. במצב זה הוא לא נטען לזכרון ולא צורך משאבי cpu או ram.
 מדובר במצב שכדאי להשתמש בו כאשר אין גישה תדירה לאינדקס, כמו לדוגמה נתוני ארכיון.
 frozen:<br>
+
 אינדקס במצב קפוא נשמר במערכת אך נטען לזכרון רק כשיש שאילתא אליו.
 הוא נשמר באחסון ונטען לזכרון רק בעת בקשה.
 שימושי במקרה שהתדירות לגישה לנתונים אינה גבוהה וכשיש מחסור במשאבים.
 cold:<br>
+
 אינדקס במצב "קר" נגיש לפעולות קריאה בלבד, ונשמר על חומרה איטית יותר ( אך זולה יותר ).
 טוב במקרה שהביצועים לא קריטיים ( הבקשות קריאה איטיות יחסית ) ויעיל בעלויות כי שמור באחסון זול.
 
