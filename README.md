@@ -27,14 +27,14 @@ If you dont have vim, install it: sudo yum install vim
 sudo vim /etc/yum.repos.d/elasticsearch.repo
 and paste this:
 
-[elasticsearch-8.x]
-name=Elasticsearch repository for 8.x packages
-baseurl=https://artifacts.elastic.co/packages/8.x/yum
-gpgcheck=1
-gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
-enabled=1
-autorefresh=1
-type=rpm-md 
+[elasticsearch-8.x]<br>
+name=Elasticsearch repository for 8.x packages<br>
+baseurl=https://artifacts.elastic.co/packages/8.x/yum<br>
+gpgcheck=1<br>
+gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch<br>
+enabled=1<br>
+autorefresh=1<br>
+type=rpm-md
 
 ## install elasticsearch
 sudo yum install elasticsearch-8.1.3
