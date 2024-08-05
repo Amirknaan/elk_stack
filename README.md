@@ -110,7 +110,7 @@ sudo systemctl status filebeat<br>
 logstash.conf file attached in the github repo<br>
 sudo systemctl restart logstash<br>
 create an Index template for CEF data - the template file name is ecs_template.json and it's available in the github repo<br>
-apply it with a put request curl -kuelastic:password PUT "http://public-ip:9200_index_template/ecs_template" -H 'Content-Type: application/json' -d @ecs_template.json
+apply it with a put request curl -kuelastic:password -X PUT "http://public-ip:9200_index_template/ecs_template" -H 'Content-Type: application/json' -d @ecs_template.json
 
 11. create index pattern<br>
 go to kibana -> Data views -> add field and choose the filter you wish, and click save.
@@ -155,7 +155,7 @@ for best performance we will define the index as "hot"
 1. Define in /etc/filebeat/filebeat.yml the host of kibana, logstash and a path to the file
 2. Edit logstash.conf 
 3. create an index template ( file json_expm_template.json )
-apply it with a put request curl -kuelastic:password PUT "http://public-ip:9200_index_template/json_expm_template" -H 'Content-Type: application/json' -d @json_expm_template.json
+apply it with a put request curl -kuelastic:password -X PUT "http://public-ip:9200_index_template/json_expm_template" -H 'Content-Type: application/json' -d @json_expm_template.json
 4. create index pattern and ILM same as you did in stages 7 and 9 in the previous drill
 5. Define an alert that way:
 In kibana enter at the scroll bar to managment -> Rules and connectors -> create rule 
