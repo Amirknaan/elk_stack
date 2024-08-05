@@ -110,7 +110,7 @@ sudo systemctl status filebeat<br>
 logstash.conf file attached in the github repo<br>
 sudo systemctl restart logstash<br>
 create an Index template for CEF data - the template file name is ecs_template.json and it's available in the github repo<br>
-apply it with a put request curl -kuelastic:password PUT "http://public-ip:9200_index_template/json_expm_template" -H 'Content-Type: application/json' -d @json_expm_template.json
+apply it with a put request curl -kuelastic:password PUT "http://public-ip:9200_index_template/ecs_template.json" -H 'Content-Type: application/json' -d @ecs_template.json
 
 11. create index pattern<br>
 go to kibana -> Data views -> add field and choose the filter you wish, and click save.

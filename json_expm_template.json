@@ -51,7 +51,8 @@
             "Is Error": { "type": "keyword" },
             "Error content": { "type": "keyword" },
             "Error message": { "type": "keyword" },
-            "Error status code": { "type": "keyword" }
+            "Error status code": { "type": "keyword" },
+	    "Error reason phrase": { "type": "keyword" }
           }
         }
       }
