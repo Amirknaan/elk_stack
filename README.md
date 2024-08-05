@@ -121,7 +121,7 @@ Dashboards -> create Dashboard -> create virtualization -> choose the data view 
 
 13. Define an ILM<br>
 Before defining an ILM we need to define an alias, which is required for rollover.<br>
-curl -kuelastic:password PUT "http://publicip:9200/my-index" -H 'Content-Type: application/json' -d'<br>
+curl -kuelastic:password -X PUT "http://publicip:9200/my-index" -H 'Content-Type: application/json' -d'<br>
 {
   "aliases": {
     "my-index-alias": {
